@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои финансы — История</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/transactions-page.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container header__inner">
+            <h1 class="header__logo">💰 Мои финансы</h1>
+            <nav class="header__nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                    <li class="nav__item"><a href="transactions.html" class="nav__link nav__link--active">Транзакции</a></li>
+                    <li class="nav__item"><a href="statistics.html" class="nav__link">Статистика</a></li>
+                </ul>
+            </nav>
+            <button id="themeToggle" class="btn btn--icon" title="Переключить тему">🌓</button>
+        </div>
+    </header>
+
+    <main class="main container">
+        <section class="history-section">
+            <h2 class="section__title">История транзакций</h2>
+            
+            <!-- Фильтры -->
+            <div class="filters">
+                <div class="form__group">
+                    <label for="filterType">Тип</label>
+                    <select id="filterType" class="form__control">
+                        <option value="all">Все</option>
+                        <option value="income">Доходы</option>
+                        <option value="expense">Расходы</option>
+                    </select>
+                </div>
+                <div class="form__group">
+                    <label for="filterCategory">Категория</label>
+                    <select id="filterCategory" class="form__control">
+                        <option value="all">Все</option>
+                    </select>
+                </div>
+                <div class="form__group">
+                    <label for="filterPeriod">Период</label>
+                    <select id="filterPeriod" class="form__control">
+                        <option value="all">Всё время</option>
+                        <option value="week">Неделя</option>
+                        <option value="month">Месяц</option>
+                        <option value="year">Год</option>
+                    </select>
+                </div>
+                <button id="exportCsv" class="btn btn--secondary">📥 Экспорт CSV</button>
+            </div>
+
+            <!-- Таблица транзакций -->
+            <div class="table-responsive">
+                <table id="transactionsTable" class="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Тип</th>
+                            <th>Категория</th>
+                            <th>Сумма</th>
+                            <th>Комментарий</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsTableBody">
+                        <!-- Динамически заполняется -->
+                    </tbody>
+                </table>
+                <p id="noTransactionsMessage" class="empty-state" style="display: none;">Транзакции не найдены.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Учебный проект «Мои финансы»</p>
+        </div>
+    </footer>
+</body>
+</html>

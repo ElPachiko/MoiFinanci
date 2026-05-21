@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои финансы — Главная</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Подключаем Chart.js для графиков -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+    <script type="module" src="js/main.js" defer></script>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container header__inner">
+            <h1 class="header__logo">💰 Мои финансы</h1>
+            <nav class="header__nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link nav__link--active">Главная</a></li>
+                    <li class="nav__item"><a href="transactions.html" class="nav__link">Транзакции</a></li>
+                    <li class="nav__item"><a href="statistics.html" class="nav__link">Статистика</a></li>
+                </ul>
+            </nav>
+            <button id="themeToggle" class="btn btn--icon" title="Переключить тему">🌓</button>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="main container">
+        <!-- Секция: Баланс -->
+        <section class="balance-widget">
+            <h2 class="section__title">Текущий баланс</h2>
+            <p id="currentBalance" class="balance__amount">0 ₽</p>
+            <div class="balance__details">
+                <span class="balance__income">Доходы: <strong id="totalIncome">0 ₽</strong></span>
+                <span class="balance__expense">Расходы: <strong id="totalExpense">0 ₽</strong></span>
+            </div>
+        </section>
+
+        <!-- Секция: Быстрое добавление транзакции -->
+        <section class="add-transaction">
+            <h2 class="section__title">Добавить транзакцию</h2>
+            <form id="transactionForm" class="transaction-form">
+                <div class="form__group">
+                    <label for="type">Тип</label>
+                    <select id="type" name="type" class="form__control" required>
+                        <option value="expense">Расход</option>
+                        <option value="income">Доход</option>
+                    </select>
+                </div>
+                <div class="form__group">
+                    <label for="amount">Сумма (₽)</label>
+                    <input type="number" id="amount" name="amount" class="form__control" placeholder="0" min="1" step="1" required>
+                </div>
+                <div class="form__group">
+                    <label for="category">Категория</label>
+                    <select id="category" name="category" class="form__control" required></select>
+                </div>
+                <div class="form__group">
+                    <label for="date">Дата</label>
+                    <input type="date" id="date" name="date" class="form__control" required>
+                </div>
+                <div class="form__group">
+                    <label for="comment">Комментарий</label>
+                    <input type="text" id="comment" name="comment" class="form__control" placeholder="Необязательно">
+                </div>
+                <button type="submit" class="btn btn--primary">Добавить</button>
+            </form>
+            <div id="formMessage" class="form__message" style="display: none;"></div>
+        </section>
+
+        <!-- Секция: Последние транзакции -->
+        <section class="recent-transactions">
+            <h2 class="section__title">Последние операции</h2>
+            <div id="recentTransactionsList" class="transactions-list">
+                <!-- Динамически заполняется из JS -->
+                <p class="empty-state">Транзакций пока нет. Добавьте первую!</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 Учебный проект «Мои финансы»</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,439 @@
+/* ========== ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ ========== */
+:root {
+    /* Светлая тема (по умолчанию) */
+    --bg-body: #f4f6f9;
+    --bg-card: #ffffff;
+    --text-primary: #2c3e50;
+    --text-secondary: #6c757d;
+    --border-color: #e0e4e8;
+    --accent: #3498db;
+    --accent-hover: #2980b9;
+    --danger: #e74c3c;
+    --danger-hover: #c0392b;
+    --income: #27ae60;
+    --expense: #e74c3c;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --radius: 8px;
+}
+
+[data-theme="dark"] {
+    --bg-body: #1a1d23;
+    --bg-card: #252830;
+    --text-primary: #e4e6eb;
+    --text-secondary: #b0b3b8;
+    --border-color: #3e4042;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ========== ШАПКА ========== */
+.header {
+    background-color: var(--bg-card);
+    box-shadow: var(--shadow);
+    padding: 15px 0;
+    margin-bottom: 30px;
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.header__logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.nav__list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav__link {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.nav__link:hover,
+.nav__link--active {
+    color: var(--accent);
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+/* ========== КНОПКИ ========== */
+.btn {
+    cursor: pointer;
+    border: none;
+    border-radius: var(--radius);
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn--primary {
+    background-color: var(--accent);
+    color: white;
+}
+
+.btn--primary:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn--secondary {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.btn--secondary:hover {
+    background-color: var(--text-secondary);
+    color: white;
+}
+
+.btn--icon {
+    background: none;
+    font-size: 1.5rem;
+    padding: 5px 10px;
+}
+
+/* ========== ОСНОВНОЙ КОНТЕНТ ========== */
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 40px;
+}
+
+section {
+    background-color: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+.section__title {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* ========== ВИДЖЕТ БАЛАНСА ========== */
+.balance__amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 10px 0;
+    color: var(--accent);
+}
+
+.balance__details {
+    display: flex;
+    gap: 30px;
+}
+
+.balance__income strong {
+    color: var(--income);
+}
+
+.balance__expense strong {
+    color: var(--expense);
+}
+
+/* ========== ФОРМЫ ========== */
+.transaction-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    align-items: end;
+}
+
+.form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form__group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.form__control {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    transition: border-color 0.2s;
+}
+
+.form__control:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.form__message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.form__message--success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.form__message--error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* ========== СПИСОК ТРАНЗАКЦИЙ ========== */
+.transactions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 6px;
+    border-left: 4px solid var(--accent);
+    background-color: var(--bg-body);
+}
+
+.transaction-item--income {
+    border-left-color: var(--income);
+}
+
+.transaction-item--expense {
+    border-left-color: var(--expense);
+}
+
+.transaction-item__left {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.transaction-item__category {
+    font-weight: 600;
+}
+
+.transaction-item__date {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.transaction-item__right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.transaction-item__amount {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.transaction-item__amount--income {
+    color: var(--income);
+}
+
+.transaction-item__amount--expense {
+    color: var(--expense);
+}
+
+.transaction-item__delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--danger);
+    font-size: 1.2rem;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+
+.transaction-item__delete:hover {
+    transform: scale(1.2);
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 30px;
+}
+
+/* ========== ТАБЛИЦА ========== */
+.filters {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: end;
+    margin-bottom: 20px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.transactions-table th,
+.transactions-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.transactions-table th {
+    background-color: var(--bg-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.transactions-table tbody tr:hover {
+    background-color: var(--bg-body);
+}
+
+/* ========== ГРАФИКИ ========== */
+.chart-container {
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 350px;
+}
+
+/* ========== ПОДВАЛ ========== */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 20px;
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+@media (max-width: 768px) {
+    .header__inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .nav__list {
+        gap: 10px;
+    }
+    
+    .balance__amount {
+        font-size: 2rem;
+    }
+    
+    .balance__details {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .transaction-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .filters {
+        flex-direction: column;
+    }
+    
+    .transaction-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .transaction-item__right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+
+}
+/* ========== ДОПОЛНИТЕЛЬНЫЕ УТИЛИТЫ ========== */
+.text-income {
+    color: var(--income);
+    font-weight: 600;
+}
+
+.text-expense {
+    color: var(--expense);
+    font-weight: 600;
+}
+
+.btn--small {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+}
+
+.btn--danger {
+    background: none;
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn--danger:hover {
+    background-color: var(--danger);
+    color: white;
+}
+
+/* Для страницы статистики */
+.stats-summary {
+    margin-top: 30px;
+}
